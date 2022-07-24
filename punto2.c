@@ -14,7 +14,7 @@ struct Tarea {
 void solicitaCantidadTareas(int * cantidad); 
 Tarea ** cargarTareas(int cantidadTareas);
 Tarea ** cargaTareasRealizadas(Tarea ** tareasPendientes, int cantidadTareas);
-Tarea * solicitarTarea(Tarea ** tareas ,int cantidadTareas, int id);
+Tarea * solicitarTareaPorID(Tarea ** tareas ,int cantidadTareas, int id);
 
 int main()
 {
@@ -90,7 +90,7 @@ Tarea ** cargaTareasRealizadas(Tarea ** tareasPendientes, int cantidadTareas)
         return tareasRealizadas;
 }
 
-Tarea * solicitarTarea(Tarea ** tareas ,int cantidadTareas, int id)
+Tarea * solicitarTareaPorID(Tarea ** tareas ,int cantidadTareas, int id)
 {
      for (int i = 0; i < cantidadTareas; i++)
      {
