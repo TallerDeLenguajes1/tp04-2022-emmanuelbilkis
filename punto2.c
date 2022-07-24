@@ -16,6 +16,7 @@ void solicitaCantidadTareas(int * cantidad);
 Tarea ** cargarTareas(int cantidadTareas);
 Tarea ** cargaTareasRealizadas(Tarea ** tareasPendientes, int cantidadTareas);
 Tarea * solicitarTareaPorPalabra(int cantidadTareas, Tarea ** tareas, char* palabraClave);
+Tarea * solicitarTareaPorID(Tarea ** tareas ,int cantidadTareas, int id);
 
 int main()
 {
@@ -46,12 +47,12 @@ Tarea ** cargarTareas(int cantidadTareas)
     {
         arregloTareas[i] = (Tarea*) malloc (sizeof(Tarea));
         
-       // printf("\n Ingrese descripcion de la tarea [%d] \n ",i+1);
-        //gets(Buff);
-        //fflush(stdin);
-        //arregloTareas[i]->Descripcion = (char *)malloc((strlen(Buff)+1));
-        //strcpy(arregloTareas[i]->Descripcion,Buff);
-        //free(Buff);
+        printf("\n Ingrese descripcion de la tarea [%d] \n ",i+1);
+        gets(Buff);
+        fflush(stdin);
+        arregloTareas[i]->Descripcion = (char *)malloc((strlen(Buff)+1));
+        strcpy(arregloTareas[i]->Descripcion,Buff);
+        free(Buff);
         arregloTareas[i]->Descripcion = "estoy probando por ahora";
         arregloTareas[i]->Duracion = rand() % 90 + 10 ;
         arregloTareas[i]->TareaID = i+1;                
@@ -69,10 +70,11 @@ Tarea ** cargaTareasRealizadas(Tarea ** tareasPendientes, int cantidadTareas)
     for (int i = 0; i < cantidadTareas; i++)
     {   
         printf("¿ La tarea -Numero [%d]- esta realizada ? \n", i+1); 
-        printf("\n 1:si ,0: no \n");
         printf("\n %d \n",tareasPendientes[i]->TareaID);
         printf("\n%s\n",tareasPendientes[i]->Descripcion);
         printf("\n%d\n",tareasPendientes[i]->Duracion);
+        printf("\n 1:si ,0: no \n");
+
         scanf("%d",&realizada);
 
         if (realizada == 1)
@@ -104,4 +106,15 @@ Tarea * solicitarTareaPorPalabra(int cantidadTareas, Tarea ** tareas, char* pala
     }
 
     return NULL;
+Tarea * solicitarTareaPorID(Tarea ** tareas ,int cantidadTareas, int id)
+{
+     for (int i = 0; i < cantidadTareas; i++)
+     {
+        if (tareas[i]->TareaID == id)
+        {
+            return tareas[i];
+        }   
+     }
+
+     return NULL;    
 }
