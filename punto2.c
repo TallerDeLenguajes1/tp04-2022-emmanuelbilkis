@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <strings.h>
 #include <string.h>
 #include <time.h>
 
@@ -14,6 +15,7 @@ struct Tarea {
 void solicitaCantidadTareas(int * cantidad); 
 Tarea ** cargarTareas(int cantidadTareas);
 Tarea ** cargaTareasRealizadas(Tarea ** tareasPendientes, int cantidadTareas);
+Tarea * solicitarTareaPorPalabra(int cantidadTareas, Tarea ** tareas, char* palabraClave);
 
 int main()
 {
@@ -86,4 +88,20 @@ Tarea ** cargaTareasRealizadas(Tarea ** tareasPendientes, int cantidadTareas)
     }
     
         return tareasRealizadas;
+}
+
+Tarea * solicitarTareaPorPalabra(int cantidadTareas, Tarea ** tareas, char* palabraClave)
+{
+    int ret;
+
+    for (int i = 0; i < cantidadTareas; i++)
+    { 
+        ret = strcmp(tareas[i]->Descripcion, palabraClave);
+        if (ret < 0)
+        {
+            return tareas[i];
+        }  
+    }
+
+    return NULL;
 }
